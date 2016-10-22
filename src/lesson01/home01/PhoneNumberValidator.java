@@ -15,6 +15,7 @@ public class PhoneNumberValidator {
                 s = reader.readLine();
                 if (s.length() == 10) {
                     if (String.valueOf(s.charAt(0)).equals("0")) {
+                        number = Long.parseLong(s);
                         break;
                     }
                 } else if (s.length() == 11) {
