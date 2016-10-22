@@ -15,6 +15,7 @@ hs_err_pid*
 # IntelliJ project files
 .idea/
 out/
+colors/
 *.iml
 *.xml
 *.class
