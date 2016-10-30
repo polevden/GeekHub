@@ -18,7 +18,14 @@ public class Rectangle extends AbstractShape {
         return (width+height)*2;
     }
 
+    public double calculateTrianglePerimeter() {
+
+        return Math.sqrt(width*width+height*height) + width + height;
+    }
+
+
     public String toString() {
-        return ("Rectangle area = " + calculateArea() + ", perimeter = " + calculatePerimeter());
+        return ("Rectangle area = " + calculateArea() + ", perimeter = " + calculatePerimeter()) + "\n" +
+                "or two triangles with the area = " + calculateArea()/2 + " and perimeter = " + calculateTrianglePerimeter();
     }
 }

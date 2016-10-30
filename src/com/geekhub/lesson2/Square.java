@@ -17,7 +17,13 @@ public class Square extends AbstractShape {
         return (side*4);
     }
 
+    public double calculateTrianglePerimeter() {
+
+        return Math.sqrt(side*side+side*side) + side*2;
+    }
+
     public String toString() {
-        return ("Square area = " + calculateArea() + ", perimeter = " + calculatePerimeter());
+        return ("Square area = " + calculateArea() + ", perimeter = " + calculatePerimeter() + "\n" +
+                "or two triangles with the area = " + calculateArea()/2 + " and perimeter = " + calculateTrianglePerimeter());
     }
 }

@@ -6,7 +6,7 @@ public class Solution {
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Form formName;
-        System.out.print("Enter shape name:");
+        System.out.print("Enter shape name: ");
         while (true) {
             try {
                 String readShape = reader.readLine();
