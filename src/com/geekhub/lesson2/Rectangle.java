@@ -19,7 +19,6 @@ public class Rectangle extends AbstractShape {
     }
 
     public double calculateTrianglePerimeter() {
-
         return Math.sqrt(width*width+height*height) + width + height;
     }
 

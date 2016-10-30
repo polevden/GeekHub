@@ -18,7 +18,6 @@ public class Square extends AbstractShape {
     }
 
     public double calculateTrianglePerimeter() {
-
         return Math.sqrt(side*side+side*side) + side*2;
     }
 
