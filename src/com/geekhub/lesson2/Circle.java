@@ -2,7 +2,6 @@ package com.geekhub.lesson2;
 
 public class Circle extends AbstractShape {
 
-    final double pi = 3.1415d;
     private int radius;
     public Circle(int radius)
     {
@@ -10,11 +9,11 @@ public class Circle extends AbstractShape {
     }
 
     public double calculateArea() {
-        return(pi*radius*radius);
+        return(Math.PI*radius*radius);
     }
 
     public double calculatePerimeter() {
-        return (2*pi*radius);
+        return (2*Math.PI*radius);
     }
 
     public String toString() {
