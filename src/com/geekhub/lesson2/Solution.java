@@ -20,7 +20,7 @@ public class Solution {
         System.out.print("Enter shape name: ");
         while (true) {
             try {
-                String readShape = reader.readLine();
+                String readShape = reader.readLine().toUpperCase();
                 formName = Form.valueOf(readShape);
 
                 if (formName == Form.CIRCLE) {
