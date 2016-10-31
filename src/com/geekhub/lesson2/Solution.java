@@ -23,32 +23,24 @@ public class Solution {
                 String readShape = reader.readLine();
                 formName = Form.valueOf(readShape);
 
-                if ((formName == Form.Circle)
-                        || (formName == Form.circle)
-                        || (formName == Form.CIRCLE)) {
+                if (formName == Form.CIRCLE) {
                     System.out.print("Enter circle radius: ");
                     int radius = NumberDetectorInput();
                     System.out.println(new Circle(radius));
                     break;
-                } else if ((formName == Form.Rectangle)
-                        || (formName == Form.rectangle)
-                        || (formName == Form.RECTANGLE)) {
+                } else if (formName == Form.RECTANGLE) {
                     System.out.print("Enter rectangle width: ");
                     int width = NumberDetectorInput();
                     System.out.print("Enter rectangle height: ");
                     int height = NumberDetectorInput();
                     System.out.println(new Rectangle(width, height));
                     break;
-                } else if ((formName == Form.Square)
-                        || (formName == Form.square)
-                        || (formName == Form.SQUARE)) {
+                } else if (formName == Form.SQUARE) {
                     System.out.print("Enter square side: ");
                     int side = NumberDetectorInput();
                     System.out.println(new Square(side));
                     break;
-                } else if ((formName == Form.Triangle)
-                        || (formName == Form.triangle)
-                        || (formName == Form.TRIANGLE)) {
+                } else if (formName == Form.TRIANGLE) {
                     while (true) {
                         System.out.print("Enter square sideA: ");
                         int sideA = NumberDetectorInput();
