@@ -78,7 +78,7 @@ public class Main {
     public static void total() {
         Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
         boolean x = false;
-        double  totalPriseProduct, totalPriseAll = 0;
+        double  totalProductCost, totalAllProductCost = 0;
         int     totalQuantityProduct, totalQuantityAll = 0;
 
         while (iterator.hasNext()) {
@@ -87,13 +87,13 @@ public class Main {
             List value = pair.getValue();
             if (!value.isEmpty()) {
                 if (!x) {
-                    System.out.println("Product:    Name     | Prize | Quantity");
+                    System.out.println("Product:    Name     | Prize | Quantity | Total cost");
                     x = true;
                 }
                 System.out.println("----------------------------------------------------");
                 System.out.println(key + ":");
                 Iterator<List> iteratorProduct = value.iterator();
-                totalPriseProduct = 0;
+                totalProductCost = 0;
                 totalQuantityProduct = 0;
                 while (iteratorProduct.hasNext()) {
                     Product text = (Product) iteratorProduct.next();
@@ -102,19 +102,20 @@ public class Main {
                     for (int i = 0; i < 12 - text.getName().length(); i++) {
                         System.out.print(" ");
                     }
-                    System.out.println(text.getPrice() + "     " + text.getQuantity());
-                    totalPriseProduct += text.getPrice();
+                    System.out.println(text.getPrice() + "     " + text.getQuantity() + "    " + text.getPrice()*text.getQuantity());
+                    totalProductCost += text.getPrice()*text.getQuantity();
                     totalQuantityProduct += text.getQuantity();
-                    totalPriseAll += totalPriseProduct;
-                    totalQuantityAll += totalQuantityAll;
+
+                    totalQuantityAll += totalQuantityProduct;
+                    totalAllProductCost += totalProductCost;
                 }
-                System.out.println("        All " + key + " cost: " + totalPriseProduct);
-                System.out.println("        All " + key + " quantity:        " + totalQuantityProduct);
+                System.out.println("Product total cost:            " + totalProductCost);
+                System.out.println("Product total quantity:        " + totalQuantityProduct);
             }
         }
-        System.out.println("================================================");
-        System.out.println("All Products total cost: " + totalPriseAll);
-        System.out.println("All Products total quantity:        " + totalQuantityAll);
+        System.out.println("=====================================================");
+        System.out.println("All products total cost:      " + totalAllProductCost);
+        System.out.println("All products total quantity:  " + totalQuantityAll);
     }
 
     public static void totalPrise() {
