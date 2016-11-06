@@ -33,10 +33,6 @@ public class Main {
                 Main.help();
             } else if (readString.equals("total")) {
                 Main.total();
-            } else if (readString.equals("total prise")) {
-                Main.totalPrise();
-            } else if (readString.equals("total quantity")) {
-                Main.totalQuantity();
             } else if (readString.equals("add")) {
                 Main.addNewProduct(productManager);
             } else if (readString.equals("exit") || readString.equals("quit")) {
@@ -71,7 +67,9 @@ public class Main {
 
 
     public static void help() {
-            System.out.println("help////");
+            System.out.println("   total        - show all products and parameters");
+            System.out.println("   add          - to create a new product");
+            System.out.println("   exit or quit - escape the program");
         }
 
 
@@ -116,14 +114,6 @@ public class Main {
         System.out.println("=====================================================");
         System.out.println("All products total cost:      " + totalAllProductCost);
         System.out.println("All products total quantity:  " + totalQuantityAll);
-    }
-
-    public static void totalPrise() {
-        System.out.println("totalprise///");
-    }
-
-    public static void totalQuantity() {
-        System.out.println("totalquantity////");
     }
 
     public static void addNewProduct(ProductManager productManager) {
