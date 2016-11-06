@@ -2,9 +2,9 @@ package com.geekhub.Lesson03;
 
 public class Product {
     private String name;
-    private double price;
+    private float price;
     private int quantity;
-    private int vendorCode;
+    private int id;
 
     public String getName() {
         return name;
@@ -16,7 +16,7 @@ public class Product {
     public double getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -27,11 +27,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getVendorCode() {
-        return vendorCode;
+    public int getId() {
+        return id;
     }
 
-    public Product(String name, double price, int quantity) {
+    public Product(String name, float price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
