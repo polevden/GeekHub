@@ -16,7 +16,7 @@ public class ProductManager {
         System.out.println("help////");
     }
 
-    private static Iterator<Map.Entry<ProductType, List<? super Product>> iterator = productsMap.entrySet().iterator();
+    private static Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
 
     public static void total() {
         boolean x = false;

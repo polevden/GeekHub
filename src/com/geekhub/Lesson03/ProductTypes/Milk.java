@@ -42,12 +42,15 @@ public class Milk extends Product {
     }
 
     public Milk(String name) {
-        super(name);
+        this.name = name;
     }
     public Milk(String name, double price) {
-        super(name, price);
+        this.name = name;
+        this.price = price;
     }
     public Milk(String name, double price, int quantity) {
-        super(name, price, quantity);
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 }

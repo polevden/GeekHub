@@ -33,13 +33,13 @@ public class Main {
         while (true) {
             String readString = reader.readLine().toLowerCase();
             if (readString.equals("help")) {
-                Inventory.help();
+                ProductManager.help();
             } else if (readString.equals("total")) {
-                Inventory.total();
+                ProductManager.total();
             } else if (readString.equals("total prise")) {
-                Inventory.totalPrise();
+                ProductManager.totalPrise();
             } else if (readString.equals("total quantity")) {
-                Inventory.totalQuantity();
+                ProductManager.totalQuantity();
             } else if (readString.equals("exit") || readString.equals("quit")) {
                 break;
             } else {

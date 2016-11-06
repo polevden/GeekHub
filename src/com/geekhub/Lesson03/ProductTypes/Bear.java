@@ -41,15 +41,17 @@ public class Bear extends Product {
         return vendorCode;
     }
 
+
     public Bear(String name) {
-        super(name);
+        this.name = name;
     }
-
     public Bear(String name, double price) {
-        super(name, price);
+        this.name = name;
+        this.price = price;
     }
-
     public Bear(String name, double price, int quantity) {
-        super(name, price, quantity);
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 }

@@ -30,17 +30,4 @@ public class Product {
     public int getVendorCode() {
         return vendorCode;
     }
-
-    Product(String name) {
-        this.name = name;
-    }
-    Product(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-    Product(String name, double price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
 }

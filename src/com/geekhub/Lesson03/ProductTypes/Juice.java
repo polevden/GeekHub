@@ -41,14 +41,16 @@ public class Juice extends Product {
         return vendorCode;
     }
 
-
     public Juice(String name) {
-        super(name);
+        this.name = name;
     }
     public Juice(String name, double price) {
-        super(name, price);
+        this.name = name;
+        this.price = price;
     }
     public Juice(String name, double price, int quantity) {
-        super(name, price, quantity);
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 }

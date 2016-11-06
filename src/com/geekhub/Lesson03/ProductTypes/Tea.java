@@ -42,12 +42,15 @@ public class Tea extends Product {
     }
 
     public Tea(String name) {
-        super(name);
+        this.name = name;
     }
     public Tea(String name, double price) {
-        super(name, price);
+        this.name = name;
+        this.price = price;
     }
     public Tea(String name, double price, int quantity) {
-        super(name, price, quantity);
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 }

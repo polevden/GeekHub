@@ -42,12 +42,15 @@ public class Candy extends Product {
     }
 
     public Candy(String name) {
-        super(name);
+        this.name = name;
     }
     public Candy(String name, double price) {
-        super(name, price);
+        this.name = name;
+        this.price = price;
     }
     public Candy(String name, double price, int quantity) {
-        super(name, price, quantity);
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 }
