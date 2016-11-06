@@ -1,11 +1,19 @@
 package com.geekhub.Lesson03;
 
-import com.geekhub.Lesson03.ProductTypes.Product;
+import com.geekhub.Lesson03.ProductTypes.*;
 
 import java.util.*;
 
 public class ProductManager {
     private static final Map<ProductType, List<? super Product>> productsMap = new HashMap<>();
+    static {
+        ProductManager.productsMap.put(ProductType.MILK, new ArrayList<Product>());
+        ProductManager.productsMap.put(ProductType.JUICE, new ArrayList<Product>());
+        ProductManager.productsMap.put(ProductType.BEAR, new ArrayList<Product>());
+        ProductManager.productsMap.put(ProductType.BREAD, new ArrayList<Product>());
+        ProductManager.productsMap.put(ProductType.CANDY, new ArrayList<Product>());
+        ProductManager.productsMap.put(ProductType.TEA, new ArrayList<Product>());
+    }
 
     public boolean addProduct(ProductType productType, Product product) {
         List<? super Product> products = productsMap.get(productType);
