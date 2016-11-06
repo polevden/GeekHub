@@ -20,8 +20,8 @@ public class ProductManager {
 
     public static void total() {
         boolean x = false;
-        double  totalPriseProduct = 0, totalPriseAll = 0;
-        int     totalQuantityProduct = 0, totalQuantityAll = 0;
+        double  totalPriseProduct, totalPriseAll = 0;
+        int     totalQuantityProduct, totalQuantityAll = 0;
 
         while (iterator.hasNext()) {
             Map.Entry<ProductType, List<? super Product>> pair = iterator.next();

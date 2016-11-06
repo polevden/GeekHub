@@ -10,7 +10,6 @@ public class Milk extends Product {
     public String getName() {
         return name;
     }
-
     @Override
     public void setName(String name) {
         this.name = name;
@@ -20,7 +19,6 @@ public class Milk extends Product {
     public double getPrice() {
         return price;
     }
-
     @Override
     public void setPrice(double price) {
         this.price = price;
@@ -30,7 +28,6 @@ public class Milk extends Product {
     public int getQuantity() {
         return quantity;
     }
-
     @Override
     public void setQuantity(int quantity) {
         this.quantity = quantity;

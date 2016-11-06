@@ -1,8 +1,8 @@
 package com.geekhub.Lesson03;
 
 enum ProductType {
-    MILK,
     BREAD,
+    MILK,
     TEA,
     BEAR,
     JUICE,
