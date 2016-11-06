@@ -1,6 +1,5 @@
 package com.geekhub.Lesson03;
 
-import com.geekhub.Lesson03.ProductTypes.*;
 import java.io.*;
 
 public class Main {
@@ -19,6 +18,8 @@ public class Main {
                 ProductManager.totalPrise();
             } else if (readString.equals("total quantity")) {
                 ProductManager.totalQuantity();
+            } else if (readString.equals("add")) {
+                productManager.addNewProduct();
             } else if (readString.equals("exit") || readString.equals("quit")) {
                 break;
             } else {
@@ -28,23 +29,23 @@ public class Main {
     }
 
     private static void initData(ProductManager productManager) {
-        productManager.addProduct(ProductType.MILK, new Milk("White Cow", 15.05, 12));
-        productManager.addProduct(ProductType.MILK, new Milk("President", 25.00, 5));
-        productManager.addProduct(ProductType.MILK, new Milk("Jack Milk", 12.99, 9));
+        productManager.addProduct(ProductType.MILK, new Product("White Cow", 15.05, 12));
+        productManager.addProduct(ProductType.MILK, new Product("President", 25.00, 5));
+        productManager.addProduct(ProductType.MILK, new Product("Jack Dilk", 12.99, 9));
 
-        productManager.addProduct(ProductType.JUICE, new Juice("Rich", 18.10, 30));
-        productManager.addProduct(ProductType.JUICE, new Juice("Sadochok", 10.50, 22));
-        productManager.addProduct(ProductType.JUICE, new Juice("Sandora", 15.40, 13));
+        productManager.addProduct(ProductType.JUICE, new Product("Rich", 18.10, 30));
+        productManager.addProduct(ProductType.JUICE, new Product("Sadochok", 10.50, 22));
+        productManager.addProduct(ProductType.JUICE, new Product("Sandora", 15.40, 13));
 
-        productManager.addProduct(ProductType.BEAR, new Bear("Obolon", 5.40, 50));
-        productManager.addProduct(ProductType.BEAR, new Bear("Tuborg", 8.10, 40));
-        productManager.addProduct(ProductType.BEAR, new Bear("Ziberth", 7.90, 35));
+        productManager.addProduct(ProductType.BEAR, new Product("Obolon", 5.40, 50));
+        productManager.addProduct(ProductType.BEAR, new Product("Tuborg", 8.10, 40));
+        productManager.addProduct(ProductType.BEAR, new Product("Ziberth", 7.90, 35));
 
-        productManager.addProduct(ProductType.TEA, new Tea("Lipton", 21.10, 100));
-        productManager.addProduct(ProductType.TEA, new Tea("Karpatskiy", 8.69, 70));
-        productManager.addProduct(ProductType.TEA, new Tea("Grinfild", 32.99, 50));
+        productManager.addProduct(ProductType.TEA, new Product("Lipton", 21.10, 100));
+        productManager.addProduct(ProductType.TEA, new Product("Karpatskiy", 8.69, 70));
+        productManager.addProduct(ProductType.TEA, new Product("Grinfild", 32.99, 50));
 
-        productManager.addProduct(ProductType.CANDY, new Candy("Sweet Life", 186.30, 200));
-        productManager.addProduct(ProductType.CANDY, new Candy("Mars", 90.15, 90));
+        productManager.addProduct(ProductType.CANDY, new Product("Sweet Life", 186.30, 200));
+        productManager.addProduct(ProductType.CANDY, new Product("Mars", 90.15, 90));
     }
 }

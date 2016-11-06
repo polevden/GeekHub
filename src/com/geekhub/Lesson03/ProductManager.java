@@ -1,7 +1,6 @@
 package com.geekhub.Lesson03;
 
-import com.geekhub.Lesson03.ProductTypes.*;
-
+import java.io.*;
 import java.util.*;
 
 public class ProductManager {
@@ -40,6 +39,7 @@ public class ProductManager {
                     System.out.println("Product:    Name     | Prize | Quantity");
                     x = true;
                 }
+                System.out.println("----------------------------------------------------");
                 System.out.println(key + ":");
                 Iterator<List> iteratorProduct = value.iterator();
                 totalPriseProduct = 0;
@@ -61,8 +61,9 @@ public class ProductManager {
                 System.out.println("        All " + key + " quantity:        " + totalQuantityProduct);
             }
         }
+        System.out.println("================================================");
         System.out.println("All Products total cost: " + totalPriseAll);
-        System.out.println("All Products total quantity:          " + totalQuantityAll);
+        System.out.println("All Products total quantity:        " + totalQuantityAll);
     }
 
     public static void totalPrise() {
@@ -73,6 +74,37 @@ public class ProductManager {
         System.out.println("totalquantity////");
     }
 
+    public void addNewProduct() {
+        String name;
+        double price;
+        int quantity;
+        ProductType readType;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter product type: ");
+        while (true) {
+            try {
+                readType = ProductType.valueOf(reader.readLine().toUpperCase());
+                break;
+            } catch (Exception e) {
+                System.out.println("Please, enter one of the available types:");
+                System.out.println(Arrays.toString(ProductType.values()));
+            }
+        }
+        while (true) {
+            try {
+                System.out.print("Enter product name: ");
+                name = reader.readLine();
+                System.out.print("Enter product price: ");
+                price = Double.parseDouble(reader.readLine());
+                System.out.print("Enter product quantity: ");
+                quantity = Integer.parseInt(reader.readLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Incorrect input. Please, try again!");
+            }
+        }
+        addProduct(readType, new Product(name, price, quantity));
+    }
 
 }
 
