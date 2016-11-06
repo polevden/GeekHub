@@ -1,8 +1,27 @@
 package com.geekhub.Lesson03;
 
 import java.io.*;
+import java.util.*;
 
 public class Main {
+    private static final Map<ProductType, List<? super Product>> productsMap = new HashMap<>();
+    static {
+        productsMap.put(ProductType.MILK, new ArrayList<Product>());
+        productsMap.put(ProductType.JUICE, new ArrayList<Product>());
+        productsMap.put(ProductType.BEAR, new ArrayList<Product>());
+        productsMap.put(ProductType.BREAD, new ArrayList<Product>());
+        productsMap.put(ProductType.CANDY, new ArrayList<Product>());
+        productsMap.put(ProductType.TEA, new ArrayList<Product>());
+    }
+
+    public static class ProductManager {
+
+        public boolean addProduct(ProductType productType, Product product) {
+            List<? super Product> products = productsMap.get(productType);
+            return products.add(product);
+        }
+    }
+
     public static void main(String[] args) throws Exception{
         ProductManager productManager = new ProductManager();
         initData(productManager);
@@ -11,15 +30,15 @@ public class Main {
         while (true) {
             String readString = reader.readLine().toLowerCase();
             if (readString.equals("help")) {
-                ProductManager.help();
+                Main.help();
             } else if (readString.equals("total")) {
-                ProductManager.total();
+                Main.total();
             } else if (readString.equals("total prise")) {
-                ProductManager.totalPrise();
+                Main.totalPrise();
             } else if (readString.equals("total quantity")) {
-                ProductManager.totalQuantity();
+                Main.totalQuantity();
             } else if (readString.equals("add")) {
-                productManager.addNewProduct();
+                Main.addNewProduct(productManager);
             } else if (readString.equals("exit") || readString.equals("quit")) {
                 break;
             } else {
@@ -48,4 +67,96 @@ public class Main {
         productManager.addProduct(ProductType.CANDY, new Product("Sweet Life", 186.30, 200));
         productManager.addProduct(ProductType.CANDY, new Product("Mars", 90.15, 90));
     }
+
+
+
+    public static void help() {
+            System.out.println("help////");
+        }
+
+
+    public static void total() {
+        Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
+        boolean x = false;
+        double  totalPriseProduct, totalPriseAll = 0;
+        int     totalQuantityProduct, totalQuantityAll = 0;
+
+        while (iterator.hasNext()) {
+            Map.Entry<ProductType, List<? super Product>> pair = iterator.next();
+            ProductType key = pair.getKey();
+            List value = pair.getValue();
+            if (!value.isEmpty()) {
+                if (!x) {
+                    System.out.println("Product:    Name     | Prize | Quantity");
+                    x = true;
+                }
+                System.out.println("----------------------------------------------------");
+                System.out.println(key + ":");
+                Iterator<List> iteratorProduct = value.iterator();
+                totalPriseProduct = 0;
+                totalQuantityProduct = 0;
+                while (iteratorProduct.hasNext()) {
+                    Product text = (Product) iteratorProduct.next();
+
+                    System.out.print("          \"" + text.getName() + "\"");
+                    for (int i = 0; i < 12 - text.getName().length(); i++) {
+                        System.out.print(" ");
+                    }
+                    System.out.println(text.getPrice() + "     " + text.getQuantity());
+                    totalPriseProduct += text.getPrice();
+                    totalQuantityProduct += text.getQuantity();
+                    totalPriseAll += totalPriseProduct;
+                    totalQuantityAll += totalQuantityAll;
+                }
+                System.out.println("        All " + key + " cost: " + totalPriseProduct);
+                System.out.println("        All " + key + " quantity:        " + totalQuantityProduct);
+            }
+        }
+        System.out.println("================================================");
+        System.out.println("All Products total cost: " + totalPriseAll);
+        System.out.println("All Products total quantity:        " + totalQuantityAll);
+    }
+
+    public static void totalPrise() {
+        System.out.println("totalprise///");
+    }
+
+    public static void totalQuantity() {
+        System.out.println("totalquantity////");
+    }
+
+    public static void addNewProduct(ProductManager productManager) {
+        String name;
+        double price;
+        int quantity;
+        ProductType readType;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter product type: ");
+        while (true) {
+            try {
+                readType = ProductType.valueOf(reader.readLine().toUpperCase());
+                break;
+            } catch (Exception e) {
+                System.out.println("Please, enter one of the available types:");
+                System.out.println(Arrays.toString(ProductType.values()));
+            }
+        }
+        while (true) {
+            try {
+                System.out.print("Enter product name: ");
+                name = reader.readLine();
+                System.out.print("Enter product price: ");
+                price = Double.parseDouble(reader.readLine());
+                System.out.print("Enter product quantity: ");
+                quantity = Integer.parseInt(reader.readLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Incorrect input. Please, try again!");
+            }
+        }
+        productManager.addProduct(readType, new Product(name, price, quantity));
+        System.out.println("You product is correctly added.");
+    }
+
 }
+
