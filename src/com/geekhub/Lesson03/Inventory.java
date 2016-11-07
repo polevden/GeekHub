@@ -24,7 +24,6 @@ public class Inventory {
     public void showInventory() {
         Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
 
-        boolean x = false;
         float   totalProductCost, totalAllProductCost = 0;
         int     totalQuantityProduct, totalQuantityAll = 0;
 
@@ -36,11 +35,11 @@ public class Inventory {
                 Iterator<List> iteratorProduct = value.iterator();
                 totalProductCost = 0;
                 totalQuantityProduct = 0;
-                System.out.println("---------------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------------------");
                 while (iteratorProduct.hasNext()) {
                     Product text = (Product) iteratorProduct.next();
 
-                    System.out.format("Product type: " + key + ", name: " + text.getName() + ", price: %.2f", text.getPrice());
+                    System.out.format("Product type: " + key + ", id: " + text.getId() + ", name: \"" + text.getName() + "\", price: %.2f", text.getPrice());
                     System.out.format(", quantity: " + text.getQuantity() + ". Total cost: %.2f%n", text.getPrice()*text.getQuantity());
                     totalProductCost += text.getPrice()*text.getQuantity();
                     totalQuantityProduct += text.getQuantity();
@@ -51,15 +50,61 @@ public class Inventory {
                 System.out.format("Product type total cost: %.2f%n", totalProductCost);
             }
         }
-        System.out.println("=====================================================");
+        System.out.println("========================================================================");
         System.out.println("All products total cost: " + totalAllProductCost);
+    }
+
+    public void showType() {
+        ProductType readType;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter product type: ");
+        while (true) {
+            try {
+                readType = ProductType.valueOf(reader.readLine().toUpperCase());
+                break;
+            } catch (Exception e) {
+                System.out.println("Please, enter one of the available types:");
+                System.out.println(Arrays.toString(ProductType.values()));
+            }
+        }
+
+        Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
+
+        float   totalProductCost, totalAllProductCost = 0;
+        int     totalQuantityProduct, totalQuantityAll = 0;
+
+        while (iterator.hasNext()) {
+            Map.Entry<ProductType, List<? super Product>> pair = iterator.next();
+            ProductType key = pair.getKey();
+            List value = pair.getValue();
+            if (!value.isEmpty() && key.equals(readType)) {
+                Iterator<List> iteratorProduct = value.iterator();
+                totalProductCost = 0;
+                totalQuantityProduct = 0;
+                while (iteratorProduct.hasNext()) {
+                    Product text = (Product) iteratorProduct.next();
+
+                    System.out.format("Product type: " + key + ", id: " + text.getId() + ", name: \"" + text.getName() + "\", price: %.2f", text.getPrice());
+                    System.out.format(", quantity: " + text.getQuantity() + ". Total cost: %.2f%n", text.getPrice()*text.getQuantity());
+                    totalProductCost += text.getPrice()*text.getQuantity();
+                    totalQuantityProduct += text.getQuantity();
+
+                    totalQuantityAll += totalQuantityProduct;
+                }
+                System.out.format("Product type total cost: %.2f%n", totalProductCost);
+            }
+        }
     }
 
     public void help() {
         System.out.println("   showinventory - show all products and parameters");
+        System.out.println("   showitype     - show product and parameters by type");
         System.out.println("   add           - to create a new product");
+        System.out.println("   del           - to delete product by id");
+        System.out.println("   changeprice   - to change price product by id");
         System.out.println("   exit or quit  - escape the program");
     }
+    
     public void addNewProduct() {
         String name;
         float price;
@@ -93,7 +138,46 @@ public class Inventory {
         System.out.println("You product is correctly added.");
     }
 
-    public void removeProduct()
-    {
+    public void removeProduct(int id) {
+        Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<ProductType, List<? super Product>> pair = iterator.next();
+            ProductType key = pair.getKey();
+            List value = pair.getValue();
+            if (!value.isEmpty()) {
+                Iterator<List> iteratorProduct = value.iterator();
+                while (iteratorProduct.hasNext()) {
+                    Product text = (Product) iteratorProduct.next();
+                    if (text.getId() == id) {
+                        System.out.format("DELETED: Product type: " + key + ", id: " + text.getId() + ", name: \"" + text.getName() + "\", price: %.2f", text.getPrice());
+                        System.out.format(", quantity: " + text.getQuantity() + ". Total cost: %.2f%n", text.getPrice()*text.getQuantity());
+                        iteratorProduct.remove();
+                    }
+                }
+            }
+        }
+    }
+
+    public void changePrice(int id, float newPrice) {
+        Iterator<Map.Entry<ProductType, List<? super Product>>> iterator = productsMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<ProductType, List<? super Product>> pair = iterator.next();
+            ProductType key = pair.getKey();
+            List value = pair.getValue();
+            if (!value.isEmpty()) {
+                Iterator<List> iteratorProduct = value.iterator();
+                while (iteratorProduct.hasNext()) {
+                    Product text = (Product) iteratorProduct.next();
+                    if (text.getId() == id) {
+                        System.out.format("Old: Product type: " + key + ", id: " + text.getId() + ", name: \"" + text.getName() + "\", price: %.2f", text.getPrice());
+                        System.out.format(", quantity: " + text.getQuantity() + ". Total cost: %.2f%n", text.getPrice()*text.getQuantity());
+                        text.setPrice(newPrice);
+                        System.out.format("New: Product type: " + key + ", id: " + text.getId() + ", name: \"" + text.getName() + "\", price: %.2f", text.getPrice());
+                        System.out.format(", quantity: " + text.getQuantity() + ". Total cost: %.2f%n", text.getPrice()*text.getQuantity());
+
+                    }
+                }
+            }
+        }
     }
 }

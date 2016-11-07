@@ -5,6 +5,7 @@ public class Product {
     private float price;
     private int quantity;
     private int id;
+    private static int counter = 1;
 
     public String getName() {
         return name;
@@ -35,5 +36,6 @@ public class Product {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        id = counter++;
     }
 }

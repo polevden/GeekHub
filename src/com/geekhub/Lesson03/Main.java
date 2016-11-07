@@ -33,14 +33,27 @@ public class Main {
                 inventory.help();
             } else if (readString.equals("showinventory")) {
                 inventory.showInventory();
-            } else if (readString.equals("addproduct")) {
+            } else if (readString.equals("showtype")) {
+                inventory.showType();
+            } else if (readString.equals("add")) {
                 inventory.addNewProduct();
+            } else if (readString.equals("del")) {
+                System.out.print("Enter product id to delete it: ");
+                int id = Integer.parseInt(reader.readLine());
+                inventory.removeProduct(id);
+            } else if (readString.equals("changeprice")) {
+                System.out.print("To change price, enter product id: ");
+                int id = Integer.parseInt(reader.readLine());
+                System.out.print("Set new price: ");
+                float newPrice = Float.parseFloat(reader.readLine());
+                inventory.changePrice(id, newPrice);
             } else if (readString.equals("exit") || readString.equals("quit")) {
                 break;
             } else {
                 System.out.println("Command not found. Enter \"help\" to see commands.");
             }
         }
+        reader.close();
     }
 }
 
