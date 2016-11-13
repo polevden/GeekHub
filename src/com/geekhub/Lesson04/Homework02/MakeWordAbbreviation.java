@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Solution {
+public class MakeWordAbbreviation {
     public static void main(String[] args){
         System.out.println("Enter the number of rows: ");
         Scanner in = new Scanner(System.in);
@@ -24,7 +24,6 @@ public class Solution {
                     return inputValue;
                 }
             } catch (Exception e) {
-//                System.out.println("Incorrect input. Enter an integer from 1 to 100.");
             }
         }
     }
@@ -62,17 +61,14 @@ public class Solution {
 
     private static boolean isValidValue(String readLine) {
         if (readLine.length() > 100 || readLine.length() < 1) {
-//            System.out.println("Incorrect input. Possess the lengths of from 1 to 100 characters. Try again.");
             return false;
         }
         for (char ch : readLine.toCharArray()) {
             if (ch == ' ') {
-//                System.out.println("Incorrect input. Enter only one word in line without space. Try again.");
                 return false;
             }
             for (char charFields : "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".toCharArray()) {
                 if (ch == charFields) {
-//                    System.out.println("Incorrect input. All the words must consist of lowercase Latin letters. Try again.");
                     return false;
                 }
             }
