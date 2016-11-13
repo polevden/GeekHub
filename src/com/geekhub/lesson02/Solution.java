@@ -1,4 +1,4 @@
-package com.geekhub.lesson2;
+package com.geekhub.lesson02;
 
 import java.io.*;
 

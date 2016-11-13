@@ -1,4 +1,4 @@
-package com.geekhub.lesson2;
+package com.geekhub.lesson02;
 
 public class Circle extends AbstractShape {
 

@@ -98,13 +98,13 @@ public class Inventory {
 
     public void help() {
         System.out.println("   showinventory - show all products and parameters");
-        System.out.println("   showitype     - show product and parameters by type");
+        System.out.println("   showtype     - show product and parameters by type");
         System.out.println("   add           - to create a new product");
         System.out.println("   del           - to delete product by id");
         System.out.println("   changeprice   - to change price product by id");
         System.out.println("   exit or quit  - escape the program");
     }
-    
+
     public void addNewProduct() {
         String name;
         float price;
