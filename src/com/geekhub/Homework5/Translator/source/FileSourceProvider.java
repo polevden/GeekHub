@@ -1,6 +1,8 @@
-package com.geekhub.source;
+package com.geekhub.Homework5.Translator.source;
 
-import java.io.IOException;
+import com.geekhub.Homework5.Translator.SourceLoadingException;
+
+import java.io.*;
 
 /**
  * Implementation for loading content from local file system.
@@ -11,13 +13,22 @@ public class FileSourceProvider implements SourceProvider {
 
     @Override
     public boolean isAllowed(String pathToSource) {
-        //TODO: implement me
-        return false;
+        File file = new File(pathToSource);
+        return file.isFile();
     }
 
     @Override
     public String load(String pathToSource) throws IOException {
-        //TODO: implement me
-        return null;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File(pathToSource)));
+            StringBuilder content = new StringBuilder();
+            String contentLine;
+            while ((contentLine = reader.readLine()) != null) {
+                content.append(contentLine).append("/n");
+            }
+            return content.toString();
+        } catch (IOException e) {
+            throw new SourceLoadingException("File not available", e);
+        }
     }
 }

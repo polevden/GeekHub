@@ -1,4 +1,4 @@
-package com.geekhub.source;
+package com.geekhub.Homework5.Translator.source;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,11 +11,16 @@ public class SourceLoader {
     private List<SourceProvider> sourceProviders = new ArrayList<>();
 
     public SourceLoader() {
-        //TODO: initialize me
+        sourceProviders.add(new FileSourceProvider());
+        sourceProviders.add(new URLSourceProvider());
     }
 
     public String loadSource(String pathToSource) throws IOException {
-        //TODO: implement me
-        return null;
+        for (SourceProvider spList : sourceProviders) {
+            if (spList.isAllowed(pathToSource)) {
+                return spList.load(pathToSource);
+            }
+        }
+        throw new IOException("Source can not load");
     }
 }

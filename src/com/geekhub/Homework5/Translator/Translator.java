@@ -1,8 +1,9 @@
-package com.geekhub;
+package com.geekhub.Homework5.Translator;
 
-import com.geekhub.source.URLSourceProvider;
+import com.geekhub.Homework5.Translator.source.URLSourceProvider;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 /**
  * Provides utilities for translating texts to russian language.<br/>
@@ -14,11 +15,11 @@ public class Translator {
      * Yandex Translate API key could be obtained at <a href="http://api.yandex.ru/key/form.xml?service=trnsl">http://api.yandex.ru/key/form.xml?service=trnsl</a>
      * to do that you have to be authorized.
      */
-    private static final String YANDEX_API_KEY = "{put_your_yandex_translate_api_key_here}";
+    private static final String YANDEX_API_KEY = "trnsl.1.1.20131116T095927Z.86fe567e8de2cf44.5be1510f166cd444fdd9363db18bb3b5537bb7e9";
     private static final String TRANSLATION_DIRECTION = "ru";
 
     private URLSourceProvider urlSourceProvider;
-    
+
     public Translator(URLSourceProvider urlSourceProvider) {
         this.urlSourceProvider = urlSourceProvider;
     }
@@ -31,8 +32,11 @@ public class Translator {
      * @throws IOException
      */
     public String translate(String original) throws TranslateException {
-        //TODO: implement me
-        return null;
+        try {
+            return parseContent(prepareURL(original));
+        } catch (IOException e) {
+            throw new TranslateException("Parsing error: " + e);
+        }
     }
 
     /**
@@ -51,9 +55,33 @@ public class Translator {
      * @param content that was received from Yandex Translate API by invoking prepared URL
      * @return translated text
      */
-    private String parseContent(String content) {
-        //TODO: implement me
-        return null;
+    private String parseContent(String content) throws IOException {
+        String translatedContent = urlSourceProvider.load(content);
+        int contentCharLength = translatedContent.toCharArray().length - 1,
+                beginIndex = 0,
+                endIndex = contentCharLength;
+        for (int i = 0; i < contentCharLength; i++) {
+            if (content.charAt(i) == '<'
+                    && content.charAt(i + 1) == 't'
+                    && content.charAt(i + 2) == 'e'
+                    && content.charAt(i + 3) == 'x'
+                    && content.charAt(i + 4) == 't'
+                    && content.charAt(i + 5) == '>') {
+                beginIndex = i + 6;
+                i += 6;
+            }
+            if (content.charAt(i) == '<'
+                    && content.charAt(i + 1) == '/'
+                    && content.charAt(i + 2) == 't'
+                    && content.charAt(i + 3) == 'e'
+                    && content.charAt(i + 4) == 'x'
+                    && content.charAt(i + 5) == 't'
+                    && content.charAt(i + 6) == '>') {
+                endIndex = i;
+                break;
+            }
+        }
+        return content.substring(beginIndex, endIndex);
     }
 
     /**
@@ -62,8 +90,8 @@ public class Translator {
      * @param text to be translated
      * @return encoded text
      */
+
     private String encodeText(String text) throws IOException {
-        //TODO: implement me
-        return null;
+        return URLEncoder.encode(text, "UTF-8");
     }
 }

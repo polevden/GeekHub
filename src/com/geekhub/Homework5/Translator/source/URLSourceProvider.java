@@ -1,6 +1,11 @@
-package com.geekhub.source;
+package com.geekhub.Homework5.Translator.source;
 
+import com.geekhub.Homework5.Translator.SourceLoadingException;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 /**
  * Implementation for loading content from specified URL.<br/>
@@ -10,13 +15,26 @@ public class URLSourceProvider implements SourceProvider {
 
     @Override
     public boolean isAllowed(String pathToSource) {
-        //TODO: implement me
-        return false;
+        try {
+            new URL(pathToSource);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public String load(String pathToSource) throws IOException {
-        //TODO: implement me
-        return null;
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(pathToSource).openStream()));
+            StringBuilder content = new StringBuilder();
+            String contentLine;
+            while ((contentLine = reader.readLine()) != null) {
+                content.append(contentLine).append("/n");
+            }
+            return content.toString();
+        } catch (IOException e) {
+            throw new SourceLoadingException("File not available", e);
+        }
     }
 }
